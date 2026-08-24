@@ -21,22 +21,22 @@
     <meta name="author" content="CryptographyTube">
     <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
     <meta name="googlebot" content="index, follow">
-    <link rel="canonical" href="http://cryptographytube.org/faq">
+    <link rel="canonical" href="https://www.cryptographytube.com/faq">
 
     
     <!-- Language -->
     <meta http-equiv="content-language" content="en">
-    <link rel="alternate" hreflang="en" href="http://cryptographytube.org/faq">
-    <link rel="alternate" hreflang="x-default" href="http://cryptographytube.org/faq">
+    <link rel="alternate" hreflang="en" href="https://www.cryptographytube.com/faq">
+    <link rel="alternate" hreflang="x-default" href="https://www.cryptographytube.com/faq">
 
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
-    <meta property="og:url" content="http://cryptographytube.org/faq">
+    <meta property="og:url" content="https://www.cryptographytube.com/faq">
     <meta property="og:title" content="FAQ - Bitcoin Private Keys &amp; Cryptocurrency Questions">
     <meta property="og:description" content="Learn about Bitcoin private keys, secp256k1 cryptography, address generation, WIF format, BIP39 mnemonics, and blockchain security. Technical documentation and guides.">
     <meta property="og:site_name" content="CryptographyTube">
     <meta property="og:locale" content="en_US">
-    <meta property="og:image" content="http://cryptographytube.org/assets/png/og-image.png">
+    <meta property="og:image" content="https://www.cryptographytube.com/assets/png/og-image.png">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
     <meta property="og:image:alt" content="CryptographyTube">
@@ -46,7 +46,7 @@
     <meta name="twitter:site" content="@cryptographytube">
     <meta name="twitter:title" content="FAQ - Bitcoin Private Keys &amp; Cryptocurrency Questions">
     <meta name="twitter:description" content="Learn about Bitcoin private keys, secp256k1 cryptography, address generation, WIF format, BIP39 mnemonics, and blockchain security. Technical documentation and guides.">
-    <meta name="twitter:image" content="http://cryptographytube.org/assets/png/og-image.png">
+    <meta name="twitter:image" content="https://www.cryptographytube.com/assets/png/og-image.png">
 
     <!-- Additional SEO Meta -->
     <meta name="application-name" content="CryptographyTube">
@@ -199,7 +199,7 @@ header{margin-bottom:1.5rem}
 
     <!-- JSON-LD Structured Data -->
         <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"What is this site for?","acceptedAnswer":{"@type":"Answer","text":"CryptographyTube is an educational tool for exploring cryptocurrency private keys and addresses. It allows you to browse the entire private key space, generate addresses for multiple blockchains, explore the Bitcoin Puzzle challenge, and learn about brainwallets and mnemonic phrases."}},{"@type":"Question","name":"Do you store all the private keys?","acceptedAnswer":{"@type":"Answer","text":"No. Private keys are not pre-stored. They are calculated on-the-fly in your browser using client-side JavaScript cryptographic libraries. The entire key space (2^256 keys) would require more storage than exists on Earth."}},{"@type":"Question","name":"What are the odds of guessing a Bitcoin private key?","acceptedAnswer":{"@type":"Answer","text":"The odds are astronomically small - essentially zero. With approximately 10^77 total private keys and only about 50 million active addresses, the probability is around 5 × 10^-70. Even checking 1 trillion keys per second for the age of the universe would not find a single funded key."}},{"@type":"Question","name":"Can I get the private key for a Bitcoin address?","acceptedAnswer":{"@type":"Answer","text":"No. This is mathematically impossible due to the one-way nature of cryptographic hash functions. The process from private key to address uses elliptic curve multiplication and hash functions that cannot be reversed."}},{"@type":"Question","name":"What is a Private Key?","acceptedAnswer":{"@type":"Answer","text":"A Private Key is a 256-bit random number represented as 64 hexadecimal characters. It is used to sign transactions and derive public keys using elliptic curve multiplication on the secp256k1 curve."}},{"@type":"Question","name":"What is WIF (Wallet Import Format)?","acceptedAnswer":{"@type":"Answer","text":"WIF is a Base58Check encoded representation of a Bitcoin private key. It includes a version byte, the private key, an optional compression flag, and a 4-byte checksum. Keys starting with 5 are uncompressed, while K or L indicate compressed keys."}},{"@type":"Question","name":"What is a Mnemonic / Seed Phrase?","acceptedAnswer":{"@type":"Answer","text":"A Mnemonic is a sequence of 12-24 words (BIP39) that represents entropy for generating a master seed. The words are converted using PBKDF2 with 2048 iterations to create a 512-bit seed for HD wallet derivation."}},{"@type":"Question","name":"What is the Bitcoin Puzzle?","acceptedAnswer":{"@type":"Answer","text":"The Bitcoin Puzzle is a challenge created in 2015 with approximately 1000 BTC distributed across 160 addresses. Each puzzle has its private key within a specific bit range, making some solvable with sufficient computing power."}},{"@type":"Question","name":"Why are brainwallets dangerous?","acceptedAnswer":{"@type":"Answer","text":"Brainwallets derive private keys from passphrases using SHA256. Human-chosen phrases have low entropy, making them vulnerable to dictionary attacks. Bots constantly scan the blockchain for funds sent to weak brainwallet addresses."}}]}</script>
-        <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"http://cryptographytube.org/"},{"@type":"ListItem","position":2,"name":"FAQ"}]}</script>
+        <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://www.cryptographytube.com/"},{"@type":"ListItem","position":2,"name":"FAQ"}]}</script>
     
     <!-- Bootstrap CSS (sync load to prevent CLS) -->
     <link href="./assets/css/bootstrap-purged.min.css" rel="stylesheet">
@@ -1176,7 +1176,7 @@ header{margin-bottom:1.5rem}
                     </h2>
 
                     <div class="related-resources-grid">
-                        <a href="https://cryptographytube.com/" class="related-resource-card" target="_blank" rel="noopener">
+                        <a href="https://www.cryptographytube.com/" class="related-resource-card" target="_blank" rel="noopener">
                             <div class="related-resource-icon">
                                 <img src="./assets/svgs/solid/dice.svg" class="fa-icon " width="24" height="24" alt="">                            </div>
                             <div class="related-resource-content">
@@ -1348,7 +1348,7 @@ header{margin-bottom:1.5rem}
                         <a href="https://github.com/Cryptographytube" class="text-muted text-decoration-none footer-link" target="_blank" rel="noopener">
                             <img src="./assets/svgs/brands/github.svg" class="fa-icon me-1" width="12" height="12" alt="">GitHub
                         </a>
-                        <a href="https://cryptographytube.com/" class="text-muted text-decoration-none footer-link" target="_blank" rel="noopener">
+                        <a href="https://www.cryptographytube.com/" class="text-muted text-decoration-none footer-link" target="_blank" rel="noopener">
                             <img src="./assets/svgs/solid/dice.svg" class="fa-icon me-1" width="12" height="12" alt="">cryptographytube.com
                         </a>
                         <a href="https://guarda.com/" class="text-muted text-decoration-none footer-link" target="_blank" rel="noopener">

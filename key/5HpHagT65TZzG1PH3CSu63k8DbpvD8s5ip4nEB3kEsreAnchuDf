@@ -20,22 +20,22 @@
     <meta name="author" content="CryptographyTube Team">
     <meta name="robots" content="noindex, follow">
     <meta name="googlebot" content="noindex, follow">
-    <link rel="canonical" href="https://cryptographytube.org/key/5HpHagT65TZzG1PH3CSu63k8DbpvD8s5ip4nEB3kEsreAnchuDf">
+    <link rel="canonical" href="https://www.cryptographytube.com/key/5HpHagT65TZzG1PH3CSu63k8DbpvD8s5ip4nEB3kEsreAnchuDf">
 
     
     <!-- Language -->
     <meta http-equiv="content-language" content="en">
-    <link rel="alternate" hreflang="en" href="https://cryptographytube.org/key/5HpHagT65TZzG1PH3CSu63k8DbpvD8s5ip4nEB3kEsreAnchuDf">
-    <link rel="alternate" hreflang="x-default" href="https://cryptographytube.org/key/5HpHagT65TZzG1PH3CSu63k8DbpvD8s5ip4nEB3kEsreAnchuDf">
+    <link rel="alternate" hreflang="en" href="https://www.cryptographytube.com/key/5HpHagT65TZzG1PH3CSu63k8DbpvD8s5ip4nEB3kEsreAnchuDf">
+    <link rel="alternate" hreflang="x-default" href="https://www.cryptographytube.com/key/5HpHagT65TZzG1PH3CSu63k8DbpvD8s5ip4nEB3kEsreAnchuDf">
 
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
-    <meta property="og:url" content="https://cryptographytube.org/key/5HpHagT65TZzG1PH3CSu63k8DbpvD8s5ip4nEB3kEsreAnchuDf">
+    <meta property="og:url" content="https://www.cryptographytube.com/key/5HpHagT65TZzG1PH3CSu63k8DbpvD8s5ip4nEB3kEsreAnchuDf">
     <meta property="og:title" content="Private Key Details - All Addresses &amp; Formats">
     <meta property="og:description" content="View all possible wallet addresses and formats for a private key. Supports Bitcoin (Legacy, SegWit, Taproot), Ethereum, BNB Chain, Tron, Solana, and more.">
     <meta property="og:site_name" content="CryptographyTube">
     <meta property="og:locale" content="en_US">
-    <meta property="og:image" content="https://cryptographytube.org/assets/png/og-image.png">
+    <meta property="og:image" content="https://www.cryptographytube.com/assets/png/og-image.png">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
     <meta property="og:image:alt" content="CryptographyTube - Blockchain Private Key Explorer">
@@ -45,7 +45,7 @@
     <meta name="twitter:site" content="@cryptographytube">
     <meta name="twitter:title" content="Private Key Details - All Addresses &amp; Formats">
     <meta name="twitter:description" content="View all possible wallet addresses and formats for a private key. Supports Bitcoin (Legacy, SegWit, Taproot), Ethereum, BNB Chain, Tron, Solana, and more.">
-    <meta name="twitter:image" content="https://cryptographytube.org/assets/png/og-image.png">
+    <meta name="twitter:image" content="https://www.cryptographytube.com/assets/png/og-image.png">
 
     <!-- Additional SEO Meta -->
     <meta name="application-name" content="CryptographyTube">
@@ -197,8 +197,8 @@ header{margin-bottom:1.5rem}
 </style>
 
     <!-- JSON-LD Structured Data -->
-        <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"Key Details","url":"https://cryptographytube.org/key/5HpHagT65TZzG1PH3CSu63k8DbpvD8s5ip4nEB3kEsreAnchuDf","description":"View all possible wallet addresses and formats for a private key. Supports Bitcoin (Legacy, SegWit, Taproot), Ethereum, BNB Chain, Tron, Solana, and more.","applicationCategory":"UtilityApplication","operatingSystem":"Any","browserRequirements":"Requires JavaScript","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}</script>
-        <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://cryptographytube.org/"},{"@type":"ListItem","position":2,"name":"Key Details"}]}</script>
+        <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"Key Details","url":"https://www.cryptographytube.com/key/5HpHagT65TZzG1PH3CSu63k8DbpvD8s5ip4nEB3kEsreAnchuDf","description":"View all possible wallet addresses and formats for a private key. Supports Bitcoin (Legacy, SegWit, Taproot), Ethereum, BNB Chain, Tron, Solana, and more.","applicationCategory":"UtilityApplication","operatingSystem":"Any","browserRequirements":"Requires JavaScript","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}</script>
+        <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://www.cryptographytube.com/"},{"@type":"ListItem","position":2,"name":"Key Details"}]}</script>
     
     <!-- Bootstrap CSS (sync load to prevent CLS) -->
     <link href="/assets/css/bootstrap-purged.min.css?v=e86abf15" rel="stylesheet">
@@ -700,7 +700,7 @@ header{margin-bottom:1.5rem}
                         <a href="https://github.com/Cryptographytube" class="text-muted text-decoration-none footer-link" target="_blank" rel="noopener">
                             <img src="/assets/svgs/brands/github.svg" class="fa-icon me-1" width="12" height="12" alt="">GitHub
                         </a>
-                        <a href="https://cryptographytube.com/" class="text-muted text-decoration-none footer-link" target="_blank" rel="noopener">
+                        <a href="https://www.cryptographytube.com/" class="text-muted text-decoration-none footer-link" target="_blank" rel="noopener">
                             <img src="/assets/svgs/solid/dice.svg" class="fa-icon me-1" width="12" height="12" alt="">cryptographytube.com
                         </a>
                         <a href="https://guarda.com/" class="text-muted text-decoration-none footer-link" target="_blank" rel="noopener">

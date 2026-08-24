@@ -1,6 +1,6 @@
 # CryptographyTube
 
-Static website files for cryptographytube.org
+Static website files for cryptographytube.com
 
 ## Deployment
 

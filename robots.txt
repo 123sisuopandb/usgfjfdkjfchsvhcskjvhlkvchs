@@ -1,5 +1,5 @@
 User-agent: *
-Sitemap: https://cryptographytube.org/sitemap.xml
+Sitemap: https://www.cryptographytube.com/sitemap.xml
 
 Disallow: /includes/
 Disallow: /cron/

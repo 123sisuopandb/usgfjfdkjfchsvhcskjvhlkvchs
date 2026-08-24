@@ -25,7 +25,7 @@
     'use strict';
 
     // <<DOMAIN>> managed by build_domain.py — do not edit by hand.
-    var CONFIGURED = '';
+    var CONFIGURED = 'https://www.cryptographytube.com';
     // <</DOMAIN>>
 
     try {

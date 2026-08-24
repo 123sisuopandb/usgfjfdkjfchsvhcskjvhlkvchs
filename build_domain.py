@@ -103,6 +103,18 @@ print()
 pages = subprocess.check_output(['git', 'ls-files', '*.html'], text=True).splitlines()
 pages = [p for p in pages if p != '404.html' and not p.lower().endswith('.dat.html')]
 
+# Also cover tracked EXTENSIONLESS HTML pages (the pre-rendered /key/<example>
+# detail files served at clean URLs). They aren't *.html, so the glob above
+# misses them; detect by content (a </head> in an extensionless tracked file).
+for p in subprocess.check_output(['git', 'ls-files'], text=True).splitlines():
+    if '.' in os.path.basename(p) or p in pages:
+        continue
+    try:
+        if '</head>' in open(p, encoding='utf-8').read().lower():
+            pages.append(p)
+    except (UnicodeDecodeError, FileNotFoundError, IsADirectoryError, PermissionError):
+        continue
+
 html_changed = seo_hits = 0
 for p in pages:
     try:
