@@ -1,0 +1,16 @@
+{
+  "name": "cryptographytube-coop-server",
+  "version": "1.0.0",
+  "description": "Community Hunt (coop) socket.io backend for the CryptographyTube bitcoin-puzzle pages",
+  "main": "server.js",
+  "engines": {
+    "node": ">=18"
+  },
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "socket.io": "^4.7.5"
+  },
+  "license": "MIT"
+}

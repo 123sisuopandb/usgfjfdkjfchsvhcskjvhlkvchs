@@ -1,0 +1,15 @@
+# Render one-click deploy for the Community Hunt coop server.
+# In Render: New + -> Blueprint -> pick this repo -> it reads this file.
+# (Render free web services support WebSockets and sleep after 15 min idle.)
+services:
+  - type: web
+    name: cryptographytube-coop
+    runtime: node
+    rootDir: coop-server
+    plan: free
+    buildCommand: npm install
+    startCommand: npm start
+    healthCheckPath: /health
+    envVars:
+      - key: SEED_HOURS
+        value: "0"   # set >0 (e.g. "72") for a head-start so a fresh deploy isn't at 0
