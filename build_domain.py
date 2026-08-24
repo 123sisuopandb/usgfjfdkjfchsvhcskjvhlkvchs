@@ -84,6 +84,15 @@ host_alt = '|'.join(re.escape(h) for h in sorted(known, key=len, reverse=True))
 ORIGIN_RE = re.compile(
     r'https?://(?:www\.)?(?:' + host_alt + r')(?=[/"\'?#:]|\s|$)', re.IGNORECASE)
 
+# The site wordmark/logo is the bare host in CAPS with NO scheme (e.g.
+# "CRYPTOGRAPHYTUBE.ORG" under the CGT logo, on every page's navbar + footer).
+# ORIGIN_RE requires a scheme, so it never touches that text; rewrite it separately
+# — from any known old host, in caps, to the new host in caps. Case-sensitive so it
+# only ever matches the wordmark, never a lowercase URL (already handled above).
+BRAND_NEW = host_of(NEW).upper()
+BRAND_RE = re.compile('|'.join(
+    re.escape(h.upper()) for h in sorted(known, key=len, reverse=True)))
+
 
 def sub_field(text, field, value):
     """Set  field: '<value>'  inside an inline CGT_CONFIG (idempotent)."""
@@ -115,7 +124,7 @@ for p in subprocess.check_output(['git', 'ls-files'], text=True).splitlines():
     except (UnicodeDecodeError, FileNotFoundError, IsADirectoryError, PermissionError):
         continue
 
-html_changed = seo_hits = 0
+html_changed = seo_hits = brand_hits = 0
 for p in pages:
     try:
         t = orig = open(p, encoding='utf-8').read()
@@ -123,6 +132,8 @@ for p in pages:
         continue
     hits = len(ORIGIN_RE.findall(t))
     t = ORIGIN_RE.sub(lambda m: NEW, t)
+    brand = len(BRAND_RE.findall(t))
+    t = BRAND_RE.sub(BRAND_NEW, t)
     if 'apiBaseUrl:' in t:
         t = sub_field(t, 'apiBaseUrl', API_BASE)
     if 'apiSocketUrl:' in t:
@@ -130,6 +141,7 @@ for p in pages:
     if t != orig:
         html_changed += 1
         seo_hits += hits
+        brand_hits += brand
         if not DRY:
             open(p, 'w', encoding='utf-8', newline='').write(t)
 
@@ -159,7 +171,7 @@ if sc_text is not None:
 
 # ---- summary ---------------------------------------------------------------
 verb = "would update" if DRY else "updated"
-print("%s %d HTML page(s)  (%d domain URL(s) rewritten)" % (verb, html_changed, seo_hits))
+print("%s %d HTML page(s)  (%d domain URL(s), %d wordmark(s) rewritten)" % (verb, html_changed, seo_hits, brand_hits))
 print(cname_msg)
 print(robots_msg)
 print(sc_msg)

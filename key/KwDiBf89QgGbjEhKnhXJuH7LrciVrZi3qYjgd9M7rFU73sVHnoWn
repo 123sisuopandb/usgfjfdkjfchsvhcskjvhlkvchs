@@ -215,7 +215,7 @@ header{margin-bottom:1.5rem}
             <a class="navbar-brand d-flex align-items-center" href="/">
                 <span class="cgt-logo">
                     <span class="cgt-logo-icon"><img src="/assets/svgs/solid/key.svg" class="fa-icon " width="18" height="18" alt=""></span>
-                    <span class="cgt-logo-text"><span>CRYPTOGRAPHYTUBE.ORG</span></span>
+                    <span class="cgt-logo-text"><span>CRYPTOGRAPHYTUBE.COM</span></span>
                 </span>
             </a>
 
