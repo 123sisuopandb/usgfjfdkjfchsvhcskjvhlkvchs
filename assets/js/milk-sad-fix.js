@@ -25,6 +25,16 @@
  * Server side: serve.py (and _redirects / .htaccess in production) resolve an
  * unknown /milk-sad/<chain>/<N> to that chain's 1.html, whose absolute /assets/
  * paths keep loading; this script then re-renders it as page N.
+ *
+ * Pagination model (matches /private-keys, the sibling tool): ALL of First /
+ * Prev / Next / Last / Random / Go navigate to the ONE stable per-chain file
+ * /milk-sad/<chain> with the page encoded as a ?page=N query (page 1 = the bare
+ * base URL) — never to a separate /milk-sad/<chain>/<N> file. Because it is the
+ * same file every time, the UI is byte-identical and only the key/address data
+ * changes, so a click feels seamless. It also fixes the page-fingerprint: the
+ * base file always exists (HTTP 200), so integrity.js can fetch+hash it and show
+ * #SHA256-... on EVERY page — whereas the old /milk-sad/<chain>/<N> links 404'd
+ * on GitHub Pages for any non-pre-rendered N, so no hash appeared past page 2.
  */
 (function () {
     'use strict';
@@ -33,6 +43,10 @@
     if (!cfg) return; // not a milk-sad page
 
     var chain = cfg.chain || 'bitcoin';
+    // The ONE stable file every pagination action targets (page 1 = bare base).
+    // Absolute so it works identically from the base file and from a numbered
+    // pre-rendered file (1.html / 2.html / last), and from any ?query.
+    var basePath = '/milk-sad/' + chain;
     // Mirrors the obf's per-chain default address type (omitted from the URL).
     var DEFAULT_TYPE = { 'bitcoin': 'legacy', 'bitcoin-cash': 'cashaddr', 'litecoin': 'legacy' };
 
@@ -93,9 +107,14 @@
         // ourselves before the deferred init runs.
         try { rebuildRows(seeds); } catch (e) {}
         try { updateHeader(N); } catch (e) {}
-        try { updateNav(N); } catch (e) {}
     }
 
+    // ALWAYS (re)point pagination at ?page= on the stable base file and take over
+    // Random / Go — even on page 1, whose hardcoded HTML links still point at the
+    // old separate per-page files. This is what unifies every page onto the one
+    // file (seamless nav, byte-identical UI, and a valid #SHA256 on every page).
+    try { updateNav(N); } catch (e) {}
+    try { bindControls(); } catch (e) {}
     syncControls();
 
     // ------------------------------- helpers -------------------------------
@@ -143,19 +162,23 @@
         }
     }
 
-    function carry() {
-        if (!params) return '';
+    // Build the href for page n on the stable base file, preserving the option
+    // params (type/bits/preset/path/bip39). Page 1 => the bare base URL (matches
+    // the canonical), so ?page= only ever appears for pages 2 and up.
+    function pageHref(n) {
         var keep = new URLSearchParams();
-        ['type', 'bits', 'preset', 'path', 'bip39'].forEach(function (k) {
-            var v = params.get(k);
-            if (v) keep.set(k, v);
-        });
+        if (params) {
+            ['type', 'bits', 'preset', 'path', 'bip39'].forEach(function (k) {
+                var v = params.get(k);
+                if (v) keep.set(k, v);
+            });
+        }
+        if (n > 1) keep.set('page', String(n));
         var q = keep.toString();
-        return q ? '?' + q : '';
+        return q ? basePath + '?' + q : basePath;
     }
 
     function updateNav(N) {
-        var q = carry();
         var targets = {
             first: 1,
             prev: Math.max(1, N - 1),
@@ -168,7 +191,7 @@
             var uses = document.querySelectorAll('.nav-buttons a use[href$="#icon-' + key + '"]');
             Array.prototype.forEach.call(uses, function (use) {
                 var a = use.closest ? use.closest('a') : null;
-                if (a) { a.setAttribute('href', '/milk-sad/' + chain + '/' + targets[key] + q); matchedAny = true; }
+                if (a) { a.setAttribute('href', pageHref(targets[key])); matchedAny = true; }
             });
         });
         // Fallback: each .nav-buttons block holds [First, Prev, Next, Last] anchors in
@@ -180,11 +203,57 @@
                 var as = block.querySelectorAll('a');
                 if (as.length === 4) {
                     for (var i = 0; i < 4; i++) {
-                        as[i].setAttribute('href', '/milk-sad/' + chain + '/' + targets[order[i]] + q);
+                        as[i].setAttribute('href', pageHref(targets[order[i]]));
                     }
                 }
             });
         }
+    }
+
+    // Take over Random and Go (jump-to-seed) so they navigate to ?page= on the
+    // base file too, instead of MilkSad's original per-page-file navigation. We
+    // strip the inline onclick="MilkSad.*()" and bind our own handler; the buttons
+    // already exist in the DOM (this script runs after the body content, before
+    // the deferred obf scripts).
+    function bindControls() {
+        Array.prototype.forEach.call(
+            document.querySelectorAll('[onclick*="randomPage"]'), function (btn) {
+                btn.removeAttribute('onclick');
+                btn.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    var n = 1 + Math.floor(Math.random() * totalPages);
+                    if (n > totalPages) n = totalPages;
+                    window.location.href = pageHref(n);
+                });
+            });
+        Array.prototype.forEach.call(
+            document.querySelectorAll('[onclick*="jumpToSeed"]'), function (btn) {
+                btn.removeAttribute('onclick');
+                btn.addEventListener('click', function (e) { e.preventDefault(); jumpToSeed(); });
+            });
+        // Enter in the seed box acts like Go.
+        var input = document.getElementById('seedInput');
+        if (input) {
+            input.addEventListener('keydown', function (e) {
+                if (e.key === 'Enter' || e.keyCode === 13) { e.preventDefault(); jumpToSeed(); }
+            });
+        }
+    }
+
+    // Resolve the seed typed into #seedInput to the page that contains it, then
+    // navigate there on the base file.
+    function jumpToSeed() {
+        var input = document.getElementById('seedInput');
+        if (!input) return;
+        var raw = (input.value || '').trim();
+        if (!raw) return;
+        var seed = parseInt(raw, 10);
+        if (!(seed >= 0)) return;
+        if (seed > totalSeeds - 1) seed = totalSeeds - 1;
+        var n = Math.floor(seed / seedsPerPage) + 1;
+        if (n < 1) n = 1;
+        if (n > totalPages) n = totalPages;
+        window.location.href = pageHref(n);
     }
 
     function syncControls() {
