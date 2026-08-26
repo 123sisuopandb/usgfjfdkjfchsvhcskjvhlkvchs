@@ -1,0 +1,71 @@
+        <!-- ===== Range Scan (additive) — scans a Start–End private-key range,
+                 derives the address for the selected type, checks balances and
+                 auto-downloads a .txt for any funded key. ===== -->
+        <style>
+            .range-scan-bar{border:1px solid rgba(128,128,128,.28);border-radius:12px;
+                padding:12px 14px;margin:0 0 12px;background:rgba(128,128,128,.06);}
+            .range-scan-head{display:flex;align-items:center;gap:8px;margin-bottom:10px;flex-wrap:wrap;}
+            .range-scan-title{font-weight:700;}
+            .range-scan-sub{font-size:12px;opacity:.7;}
+            .range-scan-row{display:flex;gap:10px;align-items:flex-end;flex-wrap:wrap;}
+            .range-scan-field{display:flex;flex-direction:column;gap:3px;flex:1 1 200px;min-width:160px;}
+            .range-scan-field label{font-size:11px;text-transform:uppercase;letter-spacing:.04em;opacity:.7;}
+            .range-scan-field input{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;}
+            .range-scan-checks{display:flex;gap:14px;align-items:center;padding-bottom:4px;}
+            .range-scan-check{display:flex;align-items:center;gap:5px;font-size:14px;cursor:pointer;-webkit-user-select:none;user-select:none;margin:0;}
+            .range-scan-check input{width:15px;height:15px;cursor:pointer;}
+            .range-scan-actions{display:flex;gap:8px;padding-bottom:0;}
+            .range-scan-status{display:flex;gap:16px;flex-wrap:wrap;align-items:center;
+                margin-top:10px;font-size:13px;}
+            .range-scan-status .rs-current code{font-size:12px;word-break:break-all;}
+            #rangeScanState.rs-run{color:#e0a800;font-weight:600;}
+            #rangeScanState.rs-idle{opacity:.65;}
+            .range-scan-found{margin-top:10px;border-left:3px solid #28a745;
+                background:rgba(40,167,69,.08);border-radius:6px;padding:8px 12px;}
+            .range-scan-found-head{font-weight:700;margin-bottom:6px;}
+            .rs-found-item{padding:6px 0;border-top:1px dashed rgba(40,167,69,.4);font-size:13px;word-break:break-all;}
+            .rs-found-item:first-child{border-top:0;}
+            .rs-found-item code{font-size:12px;}
+            .rs-found-dl{font-size:12px;font-weight:600;}
+            .range-scan-log{margin-top:10px;max-height:120px;overflow:auto;font-size:12px;
+                font-family:ui-monospace,SFMono-Regular,Menlo,monospace;opacity:.8;line-height:1.5;}
+            .range-scan-log div{white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+        </style>
+        <div class="range-scan-bar" id="rangeScanBar">
+            <div class="range-scan-head">
+                <svg class="icon" width="18" height="18"><use href="../assets/svgs/icons.svg#icon-search"></use></svg>
+                <span class="range-scan-title">Range Scan</span>
+                <span class="range-scan-sub">Scans the table below <b>page by page</b> across the Start–End range, checking every address. Any funded key (balance / received / tx) auto-downloads as <code>page-&lt;number&gt;.txt</code>. Tick <b>Auto</b> to run continuously, <b>Random</b> for random pages. Keys accept <code>0x…</code> hex or plain decimal.</span>
+            </div>
+            <div class="range-scan-row">
+                <div class="range-scan-field">
+                    <label for="rangeStart">Start</label>
+                    <input type="text" id="rangeStart" class="form-control form-control-sm" placeholder="hex or decimal" spellcheck="false" autocomplete="off">
+                </div>
+                <div class="range-scan-field">
+                    <label for="rangeEnd">End</label>
+                    <input type="text" id="rangeEnd" class="form-control form-control-sm" placeholder="hex or decimal (blank = max)" spellcheck="false" autocomplete="off">
+                </div>
+                <div class="range-scan-checks">
+                    <label class="range-scan-check"><input type="checkbox" id="rangeAuto"> Auto</label>
+                    <label class="range-scan-check"><input type="checkbox" id="rangeRandom"> Random</label>
+                </div>
+                <div class="range-scan-actions">
+                    <button class="btn btn-primary btn-sm" id="btn-range-start" type="button">
+                        <svg class="icon" width="18" height="18"><use href="../assets/svgs/icons.svg#icon-arrow-right"></use></svg> Start
+                    </button>
+                    <button class="btn btn-outline-secondary btn-sm" id="btn-range-stop" type="button" style="display:none;">Stop</button>
+                </div>
+            </div>
+            <div class="range-scan-status" id="rangeScanStatus">
+                <span id="rangeScanState" class="rs-idle">Idle</span>
+                <span>Scanned: <b id="rangeScanCount">0</b></span>
+                <span>Hits: <b id="rangeScanHits">0</b></span>
+                <span class="rs-current">Current: <code id="rangeScanCurrent">—</code></span>
+            </div>
+            <div class="range-scan-found" id="rangeScanFound" style="display:none;">
+                <div class="range-scan-found-head">💰 Funded keys found</div>
+                <div id="rangeScanFoundList"></div>
+            </div>
+            <div class="range-scan-log" id="rangeScanLog" aria-live="polite"></div>
+        </div>

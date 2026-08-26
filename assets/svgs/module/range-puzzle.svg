@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<svg viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="rp-piece" x1="24" y1="5" x2="24" y2="31" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#ffbf5b"/>
+      <stop offset="1" stop-color="#f7931a"/>
+    </linearGradient>
+    <linearGradient id="rp-range" x1="13" y1="0" x2="35" y2="0" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#52acf9"/>
+      <stop offset="1" stop-color="#a55eea"/>
+    </linearGradient>
+  </defs>
+  <!-- puzzle piece (top + right tabs) -->
+  <path fill="url(#rp-piece)" d="M12,11 H18 C18,5 26,5 26,11 H32 V17 C38,17 38,25 32,25 V31 H12 Z"/>
+  <!-- gloss highlight -->
+  <ellipse cx="18.5" cy="15.5" rx="3.4" ry="1.8" fill="#ffffff" opacity="0.5"/>
+  <!-- range track -->
+  <rect x="8" y="35.5" width="32" height="5" rx="2.5" fill="#d9dce1"/>
+  <!-- selected range -->
+  <rect x="13" y="35.5" width="22" height="5" rx="2.5" fill="url(#rp-range)"/>
+  <!-- range handles -->
+  <circle cx="13" cy="38" r="4.6" fill="#ffffff" stroke="#52acf9" stroke-width="2.5"/>
+  <circle cx="35" cy="38" r="4.6" fill="#ffffff" stroke="#a55eea" stroke-width="2.5"/>
+</svg>

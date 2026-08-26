@@ -149,5 +149,28 @@
 # (Netlify serves an existing file before applying a 200 rewrite).
 /key/*                      /key.html                        200
 
+
+# Range Puzzle (standalone clone of /private-keys)
+/range-puzzle           /range-puzzle.html           200
+/range-puzzle/arbitrum  /range-puzzle/arbitrum.html  200
+/range-puzzle/avalanche /range-puzzle/avalanche.html 200
+/range-puzzle/base      /range-puzzle/base.html      200
+/range-puzzle/bitcoin-cash /range-puzzle/bitcoin-cash.html 200
+/range-puzzle/bitcoin   /range-puzzle/bitcoin.html   200
+/range-puzzle/bnb       /range-puzzle/bnb.html       200
+/range-puzzle/dogecoin  /range-puzzle/dogecoin.html  200
+/range-puzzle/ethereum  /range-puzzle/ethereum.html  200
+/range-puzzle/litecoin  /range-puzzle/litecoin.html  200
+/range-puzzle/optimism  /range-puzzle/optimism.html  200
+/range-puzzle/polygon   /range-puzzle/polygon.html   200
+/range-puzzle/solana    /range-puzzle/solana.html    200
+/range-puzzle/sui       /range-puzzle/sui.html       200
+/range-puzzle/ton       /range-puzzle/ton.html       200
+/range-puzzle/tron      /range-puzzle/tron.html      200
+/range-puzzle/xrp       /range-puzzle/xrp.html       200
+/range-puzzle/zcash     /range-puzzle/zcash.html     200
+/range-puzzle/zksync    /range-puzzle/zksync.html    200
+/range-puzzle/:chain/:rest /range-puzzle/:chain/:rest   200
+
 # 404 fallback
 /*                          /index.html                      200
